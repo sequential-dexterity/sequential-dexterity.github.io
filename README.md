@@ -1,1 +1,1 @@
-# mimic-play.github.io
+# sequential-dexterity.github.io
