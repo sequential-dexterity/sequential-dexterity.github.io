@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sequential Dexterity | Chaining Dexterous Policies for Long-Horizon Manipulation</title>
+
+    <script>
+        var task_map = {
+            "simple-object-manipulation": "simple_object_manipulation",
+            "visual-goal-reaching": "visual_goal_reaching",
+            "novel-concept-grounding": "novel_concept_grounding",
+            "one-shot-video-imitation": "one_shot_video_imitation",
+            "visual-constraint-satisfaction": "visual_constraint_satisfaction",
+            "visual-reasoning": "visual_reasoning"
+        };
+
+        function updateDemoVideo(category) {
+            // var demo = document.getElementById("single-menu-demos").value;
+            var task = document.getElementById(category + "-menu-tasks").value;
+            var inst = document.getElementById(category + "-menu-instances").value;
+
+            console.log(task_map[category], task, inst)
+
+            var video = document.getElementById(category + "-single-task-video");
+            video.src = "assets/videos/demos/" +
+                task_map[category] +
+                "/" +
+                task +
+                "/" +
+                inst +
+                ".mp4";
+            video.playbackRate = 2.0;
+            video.play();
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/academicons.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">Sequential Dexterity: Chaining Dexterous Policies for Long-Horizon Manipulation</h1>
+                    <div class="is-size-5 publication-authors">
+            <span>
+                <b>Anonymous submission CoRL 2023</b>
+                <!-- <a target="_blank" href="https://jimfan.me/">Linxi&#160;"Jim"&#160;Fan</a><sup>2</sup>,
+                <a target="_blank" href="https://web.stanford.edu/~jksun/">Jiankai&#160;Sun</a><sup>1</sup>,
+                <a target="_blank"
+                   href="https://ai.stanford.edu/~zharu/">Ruohan&#160;Zhang</a><sup>1</sup>,
+              <br>
+                <a target="_blank" href="https://profiles.stanford.edu/fei-fei-li">Li&#160;Fei-Fei</a><sup>1</sup>,
+                <a target="_blank" href="https://faculty.cc.gatech.edu/~danfei/">Danfei&#160;Xu</a><sup>2 3</sup>,
+                <a target="_blank" href="https://www.cs.utexas.edu/~yukez/">Yuke&#160;Zhu</a><sup>2 4 &dagger;</sup>,
+                <a target="_blank" href="http://tensorlab.cms.caltech.edu/users/anima/">Anima&#160;Anandkumar</a><sup>2 5 &dagger;</sup> -->
+            </span>
+
+          </div>
+
+                    <!-- <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>1</sup>Stanford, </span>
+                        <span class="author-block"><sup>2</sup>NVIDIA, </span>
+                        <span class="author-block"><sup>3</sup>Georgia Tech, </span>
+                        <span class="author-block"><sup>4</sup>UT Austin, </span>
+                        <span class="author-block"><sup>5</sup>Caltech, </span>
+                        <span class="author-block"><sup>&dagger;</sup>Equal Advising </span>
+                    </div> -->
+
+<!--                     <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>&dagger;</sup>Equal Advising </span>
+                    </div> -->
+                    <div></div>
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- TODO PDF Link. -->
+              <!-- <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2302.12422"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <br>
+
+                            <span class="link-block">
+                <a target="_blank" href="assets/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </span>
+                            <!-- Code Link. -->
+                            <span class="link-block">
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                </a>
+                <!-- <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-network-wired"></i>
+                  </span>
+                  <span>Models</span>
+                </a>
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-robot"></i>
+                  </span>
+                  <span>Benchmark</span>
+                </a>
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a> -->
+              </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-sweep_without_touching">
+          <video poster="" id="sweep_without_touching" autoplay controls muted loop height="100%"
+                 playbackRate=2.0>
+            <source src="assets/videos/Insert_a_red.mov"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-rotate">
+          <video poster="" id="rotate" autoplay controls muted loop height="100%">
+            <source src="assets/videos/stack_two_cube.mov"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-scene_understanding">
+          <video poster="" id="scene_understanding" autoplay controls muted loop height="100%">
+            <source src="assets/videos/build_pymarid.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-simple_manipulation">
+          <video poster="" id="simple_manipulation" autoplay controls muted loop height="100%">
+            <source src="assets/videos/build_a_tower.mov"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-novel_adj">
+          <video poster="" id="novel_adj" autoplay controls muted loop height="100%">
+            <source src="assets/videos/disturbance.mov"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 125%">
+            Many real-world manipulation tasks consist of a series of subtasks that are significantly different from one another. Such long-horizon, complex tasks highlight the potential of dexterous hands, which possess adaptaility and versatility, capable of seamlessly transitioning between different modes of functionality without the need for re-grasping or external tools. However, the challenges arise due to the high-dimensional action space of dexterous hand and complex compositional dynamics of the long-horizon tasks. 
+            We present <b>Sequential Dexterity</b>, a general system based on reinforcement learning (RL) that chains multiple dexterous policies for achieving long-horizon task goals. The core of the system is a transition feasibility function that progressively finetunes the sub-policies for enhancing chaining success rate, while also enables autonomous policy-switching for recovery from failures and bypassing redundant stages. Despite being trained only in simulation with a few task objects, our system demonstrates excellent generalization capability to novel objects and is able to zero-shot transfer to a real-world robot equipped with a dexterous hand.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--<section class="section">-->
+<!--    <div class="container is-max-widescreen">-->
+<!--        <div class="rows">-->
+<!--            <div class="rows is-centered ">-->
+<!--                <div class="row is-full-width">-->
+<!--                    <img src="assets/images/pull.png" class="interpolation-image"-->
+<!--                         alt="" style="display: block; margin-left: auto; margin-right: auto"/>-->
+<!--                    <span style="font-size: 110%">Human is able to complete a long-horizon task much faster than a teleoperated robot. This observation inspires us to develop-->
+<!--MimicPlay, a hierarchical imitation learning algorithm that learns a high-level planner from cheap human play data and a low-level control-->
+<!--policy from a small amount of multi-task teleoperated robot demonstrations. We show that MimicPlay significantly improves sample-->
+<!--efficiency and robustness of imitation learning algorithms in long-horizon tasks.</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <br>
+          <img src="assets/images/method_v8.png" class="interpolation-image"
+               alt="" style="display: block; margin-left: auto; margin-right: auto" width="900"/>
+               <div class="content has-text-justified">
+                <br>
+          <span style="font-size: 125%">
+
+            <b>(a).</b> A bi-directional optimization scheme consists of a forward initialization process and a backward fine-tuning mechanism based on the transition feasibility function. <br>
+            
+            <b>(b).</b> The learned system is able to zero-shot transfer to the real world. The transition feasibility function serves as a policy-switching identifier to select the most appropriate policy to execute at each time step.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--Experiments-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+          <h2 class="title is-3"><span
+            class="dvima">Experiments</span></h2>
+          <br>
+          <h3 class="title is-4"><span
+            class="dvima">Environment Setups
+          </span></h3>
+
+          <img src="assets/images/exp_v4.png" class="interpolation-image"
+               alt="" style="display: block; margin-left: auto; margin-right: auto" width="900"/>
+               <div class="content has-text-justified">
+               <br>
+          <span style="font-size: 110%">
+            We test Sequential Dexterity in two environments: <br>
+            <b>(a).</b> Workspace of <b>Building Blocks</b> task in simulation and real-world. This long-horizon task includes four different subtasks: Searching for a block with desired dimension and color from a pile of cluttered blocks, Orienting the block to a favorable position, Grasping the block, and finally Inserting the block to its designated position on the structure. This sequence of actions repeats until the structure is completed according to the given assembly instructions. <br>
+            <b>(b).</b> The setup of the <b>Tool Positioning</b> task. Initially, the tool is placed on the table in a random pose, and the dexterous hand needs to grasp the tool and re-orient it to a ready-to-use pose. The comparison results illustrate how the way of grasping directly influences subsequent orientation.
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+              <div class="column">
+                  <h3 class="title is-4"><span
+                    class="dvima">Learning sequential sub-policies in Isaac-Gym
+                  </span></h3>
+                  <br>
+                  <video poster="" autoplay controls muted loop width="900">
+                    <source src="assets/videos/training_ig.mp4"
+                            type="video/mp4">
+                  </video>
+          <br>
+          <br>
+        </div>
+        </div>
+      </div>
+    </div>
+
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+              <div class="column">
+                  <h3 class="title is-4"><span
+                    class="dvima">Evaluation rollouts of the learned sub-policies
+                  </span></h3>
+                  <br>
+                  <video poster="" autoplay controls muted loop width="900">
+                    <source src="assets/videos/eval_sub_pol.mp4"
+                            type="video/mp4">
+                  </video>
+                  <br>
+                  <br>
+                </div>
+              </div>
+        
+            </div>
+          </div>
+
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+              <div class="column">
+                  <h3 class="title is-4"><span
+                    class="dvima">Evaluation rollouts of the chained policy sequence
+                  </span></h3>
+                  <br>
+
+                  <h4 class="title is-5"><span
+                    class="dvima">Building Blocks task
+                  </span></h4>
+                  <video poster="" autoplay controls muted loop width="900">
+                    <source src="assets/videos/sim_rollout.mp4"
+                            type="video/mp4">
+                  </video>
+                  <br>
+                  <br>
+                </div>
+              </div>
+            </div>
+
+            <div class="container is-max-desktop">
+              <div class="columns is-centered has-text-centered">
+                <div class="column">
+                  <h4 class="title is-5"><span
+                    class="dvima">Tool Positioning task
+                  </span></h4>
+
+                  <div class="hero-body">
+                    <div class="container">
+                      <div id="results-carousel" class="carousel results-carousel">
+                        <div class="item item-sweep_without_touching">
+                          <video poster="" id="sweep_without_touching" autoplay controls muted loop height="100%"
+                                 playbackRate=2.0>
+                            <source src="assets/videos/Ours_hammer_x4.mp4"
+                                    type="video/mp4">
+                          </video>
+                        </div>
+                        <div class="item item-rotate">
+                          <video poster="" id="rotate" autoplay controls muted loop height="100%">
+                            <source src="assets/videos/ours_spoon_x4.mp4"
+                                    type="video/mp4">
+                          </video>
+                        </div>
+                        <div class="item item-scene_understanding">
+                          <video poster="" id="scene_understanding" autoplay controls muted loop height="100%">
+                            <source src="assets/videos/ours_spatula_x4.mp4"
+                                    type="video/mp4">
+                          </video>
+                        </div>
+                        <div class="item item-simple_manipulation">
+                          <video poster="" id="simple_manipulation" autoplay controls muted loop height="100%">
+                            <source src="assets/videos/Policy_seq_hammer_x4.mp4"
+                                    type="video/mp4">
+                          </video>
+                        </div>
+                
+                </div>
+              </div>
+            </div>
+                </div>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--Additional Experiments-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+          <h2 class="title is-3"><span
+            class="dvima">Additional Experiments</span></h2>
+          <br>
+          <h3 class="title is-4"><span
+            class="dvima">Qualitative results of the learned transition feasibility functions
+          </span></h3>
+
+          <img src="assets/images/exp_vvalue_v3.png" class="interpolation-image"
+               alt="" style="display: block; margin-left: auto; margin-right: auto" width="900"/>
+               <div class="content has-text-justified">
+                <br>
+           <span style="font-size: 110%">
+                <b>Qualitative results of policy-switching with transition feasibility function.</b> Each result contains an image from the wrist-mount camera (left) and its corresponding feasibility score outputted by the transition feasibility functions (right). We highlight the target block in the image for better visualization. The policy-switching process visits each sub-policy in reverse order (Insert - Grasp - Orient). The first sub-policy with a feasibility score greater than 1.0 is selected for execution. If none of the feaibility score is greater than 1.0, the Search sub-policy will be selected to execute.
+          <br>
+          <br>
+
+          <img src="assets/images/switching_v5.jpg" class="interpolation-image"
+               alt="" style="display: block; margin-left: auto; margin-right: auto" width="600"/>
+               <br>
+
+               <span style="font-size: 110%">
+                <b>(a). Performance improvements</b> of our approach given 0/1/2/3 maximum policy-switching times. The ability to switch sub-policy autonomously with transition feasibility function greatly improves the success rate of solving long-horizon tasks. <br>
+
+                <b>(b). Visualization</b> of object poses with high feasibility score for the Grasp sub-policy in Building Blocks task. The x, y, and z axes are the roll, yaw, and pitch of the object, respectively. Our transition feasibility function correctly transits the goal of the succeeding Inserting skill to the prior Grasping policy and encourages the policy to grasp the block when its studs face up (easy to insert).          <br>
+          <br>
+        </div>
+
+          <h3 class="title is-4"><span
+            class="dvima">Quantitative results in the Building Blocks task
+          </span></h3>
+
+          <img src="assets/images/results for bb tasks.png" class="interpolation-image"
+               alt="" style="display: block; margin-left: auto; margin-right: auto" width="900"/>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!--Contribution-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+          <h2 class="title is-3"><span
+            class="dvima">Contribution
+          </span></h2>
+          <div class="content has-text-justified">
+          <p style="font-size: 125%">
+            The primary contributions of this work encompass:
+            <ul style="font-size: 125%">
+              <li> The <b>first</b> to explore long-horizon dexterous manipulation with policy chaining.
+              </li>
+              <li> A <b>bi-directional optimization framework</b> that significantly enhances the success rate, efficiency, and robustness of chaining multiple dexterous policies.
+              </li>
+              <li> Our framework exhibits state-of-the-art results in two multi-stage dexterous manipulation tasks and facilitates seamless zero-shot transfer to a real-world dexterous robot system.
+
+              </li>
+
+            </ul>
+        </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--Q & A-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+          <h2 class="title is-3"><span
+            class="dvima">Q & A
+          </span></h2>
+          <div class="content has-text-justified">
+          <p style="font-size: 125%">
+            <b>Q: Why dexterous hand?</b> <br>
+        <b>A:</b> Many real-world manipulation tasks consist of a sequence of smaller but drastically different subtasks. Such a task demands <b>a flexible and versatile manipulator</b> to adapt and switch between different modes of functionality seamlessly, avoiding re-grasping or use of external tools. Dexterous hand has the potential to reach human-level dexterity by utilizing various hand configurations and their inherent capabilities. Our approach underscores the extensive potential of a dexterous hand as a versatile manipulator, capable of managing a sequence of tasks without the necessity of alternating between task-oriented end-effectors.
+        </p>
+        <br>
+
+        <p style="font-size: 125%">
+        <b>Q: Can parallel-jaw grippers accomplish the Building Blocks task?</b> <br>
+        <b>A:</b> This task poses several challenges for parallel-jaw grippers. In the searching sub-task, due to the small contact area, the parallel gripper will be very inefficient in pushing the blocks and is difficult to retrieve the blocks that have been deeply buried. In the inserting sub-task, if the object pose is not optimal (e.g., the slot of the block is occluded by one of the grippers), the parallel gripper has to adjust the grasping pose through re-grasping process and cannot perform efficient in-hand adjustment.
+        </p>
+        <br>
+
+      <p style="font-size: 125%">
+        <b>Q: Why not execute each single-stage skill one after the other? (Why policy-chaining is important?)        </b> <br>
+        <b>A:</b> While the simple strategy works in some scenarios [10, 11], a subtask in general can easily fail when encountering a starting state it has never seen during training. Regularizing the state space between neighboring skills can mitigate this out-of-distribution issue [13, 14], but <b>long-horizon dexterous manipulation</b> requires a comprehensive optimization of the entire skill chain, due to the complex coordination between non-adjacent tasks. For instance, in the Building Blocks task, the robot needs to strategize in advance when orienting the block, aiming for an optimal object pose that facilitates not only the immediate subsequent grasping but also the insertion task in the later stage of the entire task.    </p>
+        <br>
+
+    <p style="font-size: 125%">
+      <b>Q: Why don't fine-tune the sub-policy with the original RL value function from the next sub-policy?      </b> <br>
+      <b>A:</b> In Table. 1 (Results for the Building Blocks task), the models learned with the transition feasibility function (Ours and Ours w/o temporal) outperforms the one using the PPO-trained value function (V-Chain) for <b>more than 30% in task success rate</b>. This result implies that the value function of PPO policy fails to model the feasibility of subsequent policy, which further affects policy chaining results. Qualitatively, the value function from RL is hard to correctly model the final state of an MDP due to the discounted rewards, but the final state (successful or unsuccessful) is important for successful policy chaining.    </p>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
