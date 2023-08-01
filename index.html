@@ -478,7 +478,7 @@
                alt="" style="display: block; margin-left: auto; margin-right: auto" width="600"/>
                <br>
 
-               <span style="font-size: 110%">
+               <span style="font-size: 100%">
                 <b>(a). Performance improvements</b> of our approach given 0/1/2/3 maximum policy-switching times. The ability to switch sub-policy autonomously with transition feasibility function greatly improves the success rate of solving long-horizon tasks. <br>
 
                 <b>(b). Visualization</b> of object poses with <b>high feasibility score</b> for the Grasp sub-policy in Building Blocks task. The x, y, and z axes are the roll, yaw, and pitch of the object, respectively. Our transition feasibility function correctly transits the goal of the succeeding Inserting skill to the prior Grasping policy and encourages the policy to grasp the block when its studs face up (easy to insert).          <br>
@@ -492,9 +492,31 @@
           <img src="assets/images/results for bb tasks.png" class="interpolation-image"
                alt="" style="display: block; margin-left: auto; margin-right: auto" width="900"/>
 
+               <br>
+
+               <h3 class="title is-4"><span
+                class="dvima">Sim2Real Tracking
+              </span></h3>
+    
+              <video poster="" autoplay controls muted loop width="900">
+                <source src="assets/videos/sim2realtracking.mp4"
+                        type="video/mp4">
+              </video>
+              <br>
+              <br>
+
+              <div class="content has-text-justified">
+                <span style="font-size: 110%">
+                To transfer the learned policies to the real world, we develop an object-tracking system consisting of a top-down camera and a wrist RGB-D camera mounted on the robot: <br>
+
+                <b>(a).</b> In the beginning, the top-down camera localizes the target block and guides the end-effector towards it. <br>
+                
+                <b>(b).</b> Then, we use a color-based segmentation method to localize the target block in the wrist-view and use <b>XMem</b> to track the segment. <br>
+
+                <b>(c).</b> Based on the segmentation and RGB-D inputs, <b>DenseFusion</b> is used to estimate the 6D pose of the block in real-time.
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
