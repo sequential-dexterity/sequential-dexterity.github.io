@@ -154,6 +154,11 @@ body {
 }
 
 
+.wrong-panel {
+    background: #cc0606;
+    border-radius: 10px;
+}
+
 .interpolation-panel {
     background: #f5f5f5;
     border-radius: 10px;

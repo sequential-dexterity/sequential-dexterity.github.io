@@ -77,7 +77,7 @@
 
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Stanford University, <sup>*</sup>Equal Contribution</span>
+            <span class="author-block">Stanford University <br> <sup>*</sup>Equal Contribution</span>
           </div>
 
           <div class="column has-text-centered">
@@ -185,13 +185,13 @@
           </video>
         </div>
       </div>
+      <h2 class="subtitle has-text-centered">
+      </br>
+      Despite being trained only in simulation with a few task objects, our system demonstrates excellent <b>zero-shot transfer</b> to a real-world robot equipped with a dexterous hand. These videos show building blocks into different shapes using our system in the real-world.
+      </h2>
     </div>
   </div>
 </section>
-<h2 class="subtitle has-text-centered">
-</br>
-Despite being trained only in simulation with a few task objects, our system demonstrates excellent generalization capability to novel objects and is able to zero-shot transfer to a real-world robot equipped with a dexterous hand.
-</h2>
 
 <section class="hero is-light">
   <div class="hero-body">
@@ -225,7 +225,7 @@ Despite being trained only in simulation with a few task objects, our system dem
                 <br>
           <span style="font-size: 125%">
 
-            <b>(a).</b> A bi-directional optimization scheme consists of a forward initialization process and a backward fine-tuning mechanism based on the transition feasibility function. <br>
+            <b>(a).</b> A bi-directional optimization scheme consists of a <b><font color="blue">forward initialization</font></b> process and a <b><font color="red">backward fine-tuning</font></b> mechanism based on the transition feasibility function. <br>
             
             <b>(b).</b> The learned system is able to zero-shot transfer to the real world. The transition feasibility function serves as a policy-switching identifier to select the most appropriate policy to execute at each time step.</span>
         </div>
@@ -339,9 +339,21 @@ Despite being trained only in simulation with a few task objects, our system dem
                     class="dvima">Tool Positioning task
                   </span></h4>
 
-                  <div class="hero-body">
-                    <div class="container">
-                      <div id="results-carousel" class="carousel results-carousel">
+
+                  <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                      <div class="content">
+                        <h5 class="title is-5">Hammer - Ours</h2>
+                      </div>
+                    </div>
+                    <div class="column has-text-centered">
+                      <div class="content">
+                        <h5 class="title is-5">Hammer - Polcy-Seq [10]</h2>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="columns is-centered">
                         <div class="item item-sweep_without_touching">
                           <video poster="" id="sweep_without_touching" autoplay controls muted loop height="100%"
                                  playbackRate=2.0>
@@ -351,10 +363,27 @@ Despite being trained only in simulation with a few task objects, our system dem
                         </div>
                         <div class="item item-rotate">
                           <video poster="" id="rotate" autoplay controls muted loop height="100%">
-                            <source src="assets/videos/ours_spoon_x4.mp4"
+                            <source src="assets/videos/Policy_seq_hammer_x4.mp4"
                                     type="video/mp4">
                           </video>
                         </div>
+                      </div>
+
+                      <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                          <div class="content">
+                            <h5 class="title is-5">Spatula (Unseen) - Ours</h5>
+                          </div>
+                        </div>
+                        <div class="column has-text-centered">
+                          <div class="content">
+                            <h5 class="title is-5">Spatula (Unseen) - Polcy-Seq [10]</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="columns is-centered">
+
                         <div class="item item-scene_understanding">
                           <video poster="" id="scene_understanding" autoplay controls muted loop height="100%">
                             <source src="assets/videos/ours_spatula_x4.mp4"
@@ -363,11 +392,40 @@ Despite being trained only in simulation with a few task objects, our system dem
                         </div>
                         <div class="item item-simple_manipulation">
                           <video poster="" id="simple_manipulation" autoplay controls muted loop height="100%">
-                            <source src="assets/videos/Policy_seq_hammer_x4.mp4"
+                            <source src="assets/videos/spata_polseq_x4.mp4"
                                     type="video/mp4">
                           </video>
                         </div>
-                
+                      </div>
+
+                      <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                          <div class="content">
+                            <h5 class="title is-5">Spoon (Unseen) - Ours</h2>
+                          </div>
+                        </div>
+                        <div class="column has-text-centered">
+                          <div class="content">
+                            <h5 class="title is-5">Spoon (Unseen) - Polcy-Seq [10]</h2>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="columns is-centered">
+                        <div class="item item-scene_understanding">
+                          <video poster="" id="scene_understanding" autoplay controls muted loop height="100%">
+                            <source src="assets/videos/ours_spoon_x4.mp4"
+                                    type="video/mp4">
+                          </video>
+                        </div>
+                        <div class="item item-simple_manipulation">
+                          <video poster="" id="simple_manipulation" autoplay controls muted loop height="100%">
+                            <source src="assets/videos/soup_polseq_x4.mp4"
+                                    type="video/mp4">
+                          </video>
+                        </div>
+                      </div>
+
                 </div>
               </div>
             </div>
@@ -424,7 +482,7 @@ Despite being trained only in simulation with a few task objects, our system dem
                <span style="font-size: 110%">
                 <b>(a). Performance improvements</b> of our approach given 0/1/2/3 maximum policy-switching times. The ability to switch sub-policy autonomously with transition feasibility function greatly improves the success rate of solving long-horizon tasks. <br>
 
-                <b>(b). Visualization</b> of object poses with high feasibility score for the Grasp sub-policy in Building Blocks task. The x, y, and z axes are the roll, yaw, and pitch of the object, respectively. Our transition feasibility function correctly transits the goal of the succeeding Inserting skill to the prior Grasping policy and encourages the policy to grasp the block when its studs face up (easy to insert).          <br>
+                <b>(b). Visualization</b> of object poses with <b>high feasibility score</b> for the Grasp sub-policy in Building Blocks task. The x, y, and z axes are the roll, yaw, and pitch of the object, respectively. Our transition feasibility function correctly transits the goal of the succeeding Inserting skill to the prior Grasping policy and encourages the policy to grasp the block when its studs face up (easy to insert).          <br>
           <br>
         </div>
 
