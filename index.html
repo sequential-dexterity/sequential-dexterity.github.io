@@ -136,7 +136,7 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns is-vcentered  is-centered">
-          <video id="teaser" autoplay muted loop height="60%" width="60%">
+          <video id="teaser" autoplay muted loop height="80%" width="80%">
             <source src="assets/videos/SeqDex.mov" type="video/mp4">
           </video>
           </br>
@@ -493,13 +493,14 @@
                alt="" style="display: block; margin-left: auto; margin-right: auto" width="900"/>
 
                <br>
+               <br>
 
-               <h3 class="title is-4"><span
-                class="dvima">Sim2Real Tracking
+          <h3 class="title is-4"><span
+                class="dvima">Sim-to-real system preparation (target object tracking)
               </span></h3>
     
               <video poster="" autoplay controls muted loop width="900">
-                <source src="assets/videos/sim2realtracking.mp4"
+                <source src="assets/videos/sim2real_c.mp4"
                         type="video/mp4">
               </video>
               <br>
@@ -509,13 +510,30 @@
                 <span style="font-size: 110%">
                 To transfer the learned policies to the real world, we develop an object-tracking system consisting of a top-down camera and a wrist RGB-D camera mounted on the robot: <br>
 
-                <b>(a).</b> In the beginning, the top-down camera localizes the target block and guides the end-effector towards it. <br>
+                <b>(1).</b> We use the top-down camera localizes the target block and guides the end-effector towards it. <br>
                 
-                <b>(b).</b> Then, we use a color-based segmentation method to localize the target block in the wrist-view and use <b>XMem</b> to track the segment. <br>
+                <b>(2).</b> We use a color-based segmentation method to localize the target block in the wrist-view and use XMem to track the segment. <br>
 
-                <b>(c).</b> Based on the segmentation and RGB-D inputs, <b>DenseFusion</b> is used to estimate the 6D pose of the block in real-time.
+                <b>(3).</b> Based on the segmentation and RGB-D inputs, DenseFusion is used to estimate the 6D pose of the block in real-time.
+              </div>
+              <br>
+          <h3 class="title is-4"><span
+              class="dvima">Interative GUI
+          </span></h3>
+      
+                <video poster="" autoplay controls muted loop width="900">
+                  <source src="assets/videos/quick_demo.mp4"
+                          type="video/mp4">
+                </video>
+                <br>
+                <br>
+  
+                <div class="content has-text-centered">
+                  <span style="font-size: 110%">
+                  Feel free to try out our <a target="_blank" href="https://github.com/sequential-dexterity/SeqDex#quick-demo">quick demo</a> (Interative GUI)!
+                </div>
+
           </div>
-        </div>
       </div>
     </div>
   </div>
