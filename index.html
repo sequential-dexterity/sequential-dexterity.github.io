@@ -202,7 +202,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p style="font-size: 125%">
-            Many real-world manipulation tasks consist of a series of subtasks that are significantly different from one another. Such long-horizon, complex tasks highlight the potential of dexterous hands, which possess adaptaility and versatility, capable of seamlessly transitioning between different modes of functionality without the need for re-grasping or external tools. However, the challenges arise due to the high-dimensional action space of dexterous hand and complex compositional dynamics of the long-horizon tasks. 
+            Many real-world manipulation tasks consist of a series of subtasks that are significantly different from one another. Such long-horizon, complex tasks highlight the potential of dexterous hands, which possess adaptability and versatility, capable of seamlessly transitioning between different modes of functionality without the need for re-grasping or external tools. However, the challenges arise due to the high-dimensional action space of dexterous hand and complex compositional dynamics of the long-horizon tasks. 
             We present <b>Sequential Dexterity</b>, a general system based on reinforcement learning (RL) that chains multiple dexterous policies for achieving long-horizon task goals. The core of the system is a transition feasibility function that progressively finetunes the sub-policies for enhancing chaining success rate, while also enables autonomous policy-switching for recovery from failures and bypassing redundant stages. Despite being trained only in simulation with a few task objects, our system demonstrates excellent generalization capability to novel objects and is able to zero-shot transfer to a real-world robot equipped with a dexterous hand.
           </p>
         </div>
@@ -494,7 +494,7 @@
                <div class="content has-text-justified">
                 <br>
            <span style="font-size: 110%">
-                <b>Qualitative results of policy-switching with transition feasibility function.</b> Each result contains an image from the wrist-mount camera (left) and its corresponding feasibility score outputted by the transition feasibility functions (right). We highlight the target block in the image for better visualization. The policy-switching process visits each sub-policy in reverse order (Insert - Grasp - Orient). The first sub-policy with a feasibility score greater than 1.0 is selected for execution. If none of the feaibility score is greater than 1.0, the Search sub-policy will be selected to execute.
+                <b>Qualitative results of policy-switching with transition feasibility function.</b> Each result contains an image from the wrist-mount camera (left) and its corresponding feasibility score outputted by the transition feasibility functions (right). We highlight the target block in the image for better visualization. The policy-switching process visits each sub-policy in reverse order (Insert - Grasp - Orient). The first sub-policy with a feasibility score greater than 1.0 is selected for execution. If none of the feasibility score is greater than 1.0, the Search sub-policy will be selected to execute.
           <br>
           <br>
 
@@ -534,7 +534,7 @@
                 <span style="font-size: 110%">
                 To transfer the learned policies to the real world, we develop an object-tracking system consisting of a top-down camera and a wrist RGB-D camera mounted on the robot: <br>
 
-                <b>(1).</b> We use the top-down camera localizes the target block and guides the end-effector towards it. <br>
+                <b>(1).</b> We use the top-down camera to localize the target block and guide the end-effector towards it. <br>
                 
                 <b>(2).</b> We use a color-based segmentation method to localize the target block in the wrist-view and use XMem to track the segment. <br>
 
@@ -612,13 +612,13 @@
           <div class="content has-text-justified">
           <p style="font-size: 125%">
             <b>Q: Why dexterous hand?</b> <br>
-        <b>A:</b> Many real-world manipulation tasks consist of a sequence of smaller but drastically different subtasks. Such a task demands <b>a flexible and versatile manipulator</b> to adapt and switch between different modes of functionality seamlessly, avoiding re-grasping or use of external tools. Dexterous hand has the potential to reach human-level dexterity by utilizing various hand configurations and their inherent capabilities. Our approach underscores the extensive potential of a dexterous hand as a versatile manipulator, capable of managing a sequence of tasks without the necessity of alternating between task-oriented end-effectors.
+        <b>A:</b> Many real-world manipulation tasks consist of a sequence of smaller but drastically different subtasks. Such a task demands <b>a flexible and versatile manipulator</b> to adapt and switch between different modes of functionality seamlessly, avoiding re-grasping or the use of external tools. Dexterous hand has the potential to reach human-level dexterity by utilizing various hand configurations and their inherent capabilities. Our approach underscores the extensive potential of a dexterous hand as a versatile manipulator, capable of managing a sequence of tasks without the necessity of alternating between task-oriented end-effectors.
         </p>
         <br>
 
         <p style="font-size: 125%">
         <b>Q: Can parallel-jaw grippers accomplish the Building Blocks task?</b> <br>
-        <b>A:</b> This task poses several challenges for parallel-jaw grippers. In the searching sub-task, due to the small contact area, the parallel gripper will be very inefficient in pushing the blocks and is difficult to retrieve the blocks that have been deeply buried. In the inserting sub-task, if the object pose is not optimal (e.g., the slot of the block is occluded by one of the grippers), the parallel gripper has to adjust the grasping pose through re-grasping process and cannot perform efficient in-hand adjustment.
+        <b>A:</b> This task poses several challenges for parallel-jaw grippers. In the searching sub-task, due to the small contact area, the parallel gripper will be very inefficient in pushing the blocks and is difficult to retrieve the blocks that have been deeply buried. In the inserting sub-task, if the object pose is not optimal (e.g., the slot of the block is occluded by one of the grippers), the parallel gripper has to adjust the grasping pose through the re-grasping process and cannot perform an efficient in-hand adjustment.
         </p>
         <br>
 
@@ -629,7 +629,7 @@
 
     <p style="font-size: 125%">
       <b>Q: Why don't fine-tune the sub-policy with the original RL value function from the next sub-policy?      </b> <br>
-      <b>A:</b> In Table. 1 (Results for the Building Blocks task), the models learned with the transition feasibility function (Ours and Ours w/o temporal) outperforms the one using the PPO-trained value function (V-Chain) for <b>more than 30% in task success rate</b>. This result implies that the value function of PPO policy fails to model the feasibility of subsequent policy, which further affects policy chaining results. Qualitatively, the value function from RL is hard to correctly model the final state of an MDP due to the discounted rewards, but the final state (successful or unsuccessful) is important for successful policy chaining.    </p>
+      <b>A:</b> In Table. 1 (Results for the Building Blocks task), the models learned with the transition feasibility function (Ours and Ours w/o temporal) outperform the one using the PPO-trained value function (V-Chain) for <b>more than 30% in task success rate</b>. This result implies that the value function of PPO policy fails to model the feasibility of subsequent policy, which further affects policy chaining results. Qualitatively, the value function from RL is hard to correctly model the final state of an MDP due to the discounted rewards, but the final state (successful or unsuccessful) is important for successful policy chaining.    </p>
 
 
         </div>
