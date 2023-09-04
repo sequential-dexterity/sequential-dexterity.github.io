@@ -188,7 +188,7 @@
       </div>
       <h2 class="subtitle has-text-centered">
       </br>
-      Despite being trained only in simulation with a few task objects, our system demonstrates excellent <b>zero-shot transfer</b> to a real-world robot equipped with a dexterous hand. These videos show building blocks into different shapes using our system in the real-world.
+      Despite being trained only in simulation with a few task objects, our system demonstrates <b>zero-shot transfer</b> to a real-world robot equipped with a dexterous hand. These videos show building blocks into different shapes using our system in the real-world.
       </h2>
     </div>
   </div>
@@ -204,7 +204,7 @@
         <div class="content has-text-justified">
           <p style="font-size: 125%">
             Many real-world manipulation tasks consist of a series of subtasks that are significantly different from one another. Such long-horizon, complex tasks highlight the potential of dexterous hands, which possess adaptability and versatility, capable of seamlessly transitioning between different modes of functionality without the need for re-grasping or external tools. However, the challenges arise due to the high-dimensional action space of dexterous hand and complex compositional dynamics of the long-horizon tasks. 
-            We present <b>Sequential Dexterity</b>, a general system based on reinforcement learning (RL) that chains multiple dexterous policies for achieving long-horizon task goals. The core of the system is a transition feasibility function that progressively finetunes the sub-policies for enhancing chaining success rate, while also enables autonomous policy-switching for recovery from failures and bypassing redundant stages. Despite being trained only in simulation with a few task objects, our system demonstrates excellent generalization capability to novel objects and is able to zero-shot transfer to a real-world robot equipped with a dexterous hand.
+            We present <b>Sequential Dexterity</b>, a general system based on reinforcement learning (RL) that chains multiple dexterous policies for achieving long-horizon task goals. The core of the system is a transition feasibility function that progressively finetunes the sub-policies for enhancing chaining success rate, while also enables autonomous policy-switching for recovery from failures and bypassing redundant stages. Despite being trained only in simulation with a few task objects, our system demonstrates generalization capability to novel object shapes and is able to zero-shot transfer to a real-world robot equipped with a dexterous hand.
           </p>
         </div>
       </div>
@@ -571,11 +571,11 @@
           <p style="font-size: 125%">
             The primary contributions of this work encompass:
             <ul style="font-size: 125%">
-              <li> The <b>first</b> to explore long-horizon dexterous manipulation with policy chaining.
+              <li> The first to explore policy chaining for long-horizon dexterous manipulation.
               </li>
-              <li> A <b>bi-directional optimization framework</b> that significantly enhances the success rate, efficiency, and robustness of chaining multiple dexterous policies.
+              <li> A general <b>bi-directional optimization framework</b> framework that effectively chains multiple dexterous skills for long-horizon dexterous manipulation.
               </li>
-              <li> Our framework exhibits state-of-the-art results in two multi-stage dexterous manipulation tasks and facilitates seamless zero-shot transfer to a real-world dexterous robot system.
+              <li> Our framework exhibits state-of-the-art results in multi-stage dexterous manipulation tasks and facilitates zero-shot transfer to a real-world dexterous robot system.
 
               </li>
 
@@ -639,6 +639,19 @@
     </div>
   </div>
 </section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-widescreen content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{chen2023sequential, 
+      title={Sequential Dexterity: Chaining Dexterous Policies for Long-Horizon Manipulation},
+      author={Chen, Yuanpei and Wang, Chen and Fei-Fei, Li and Liu, C. Karen},
+      booktitle={Conference on Robot Learning},
+      year={2023}
+    }</code></pre>
+  </div>
+</section>
+
 
 </body>
 </html>
