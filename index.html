@@ -338,7 +338,7 @@
                   <br>
                   <br>
 
-                  <div class="content has-text-centered">
+                  <div class="content has-text-justified">
                     <span style="font-size: 110%">
                       Since it is impossible to simulate the contact-rich insertion of blocks in simulation, the <b>insertion</b> skill in sim is a simplified version and the robot learns to use finger jittering to place the block. In the real-world experiments, we only perform the insertion policy when the hand is still in the air (in-hand rotate and align to the goal location). The moving down and pressing motion used to fully insert the block is scripted.
                   </div>
@@ -458,7 +458,7 @@
                 <br>
                 <br>
 
-                <div class="content has-text-centered">
+                <div class="content has-text-justified">
                   <span style="font-size: 110%">
                   Feel free to try out our <a target="_blank" href="https://github.com/sequential-dexterity/SeqDex#quick-demo">quick demo</a> (Interactive GUI)! To get the best performance for this demo, the policy takes the full state information (object acceleration, motor velocity, …) as inputs and is allowed to control the end-effector orientation, which is the policy before distillation for the real-world deployment.
                 </div>
@@ -555,7 +555,7 @@
 
                 <b>(3).</b> Based on the segmentation and RGB-D inputs, DenseFusion is used to estimate the 6D pose of the block in real-time. <br>
               
-                <b>(4).</b> During real-world deployment, we also increase the exponential moving average[6] smoothing factor to avoid fingers' jittering motion.
+                <b>(4).</b> During real-world deployment, we also increase the exponential moving average[6] smoothing factor to alleviate finger jittering.
               </div>
               <br>
           </div>
