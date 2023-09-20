@@ -115,7 +115,15 @@
                 <span>Video</span>
               </a>
             </span>
-
+            <!-- Twitter Link. -->
+            <span class="link-block">
+              <a href="https://twitter.com/chenwang_j/status/1699453998464667814" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-twitter"></i>
+                </span>
+                <span>Twitter</span>
+              </a>
+            </span>
             <!-- Code Link. -->
             <span class="link-block">
               <a target="_blank" href="https://github.com/sequential-dexterity/SeqDex"
@@ -138,7 +146,7 @@
       <div class="container">
         <div class="columns is-vcentered  is-centered">
           <video id="teaser" autoplay muted loop height="80%" width="80%">
-            <source src="assets/videos/quick_intro.mp4" type="video/mp4">
+            <source src="assets/videos/quick_intro_v2.mp4" type="video/mp4">
           </video>
           </br>
         </div>
@@ -329,6 +337,12 @@
                   </video>
                   <br>
                   <br>
+
+                  <div class="content has-text-centered">
+                    <span style="font-size: 110%">
+                      Since it is impossible to simulate the contact-rich insertion of blocks in simulation, the <b>insertion</b> skill in sim is a simplified version and the robot learns to use finger jittering to place the block. In the real-world experiments, we only perform the insertion policy when the hand is still in the air (in-hand rotate and align to the goal location). The moving down and pressing motion used to fully insert the block is scripted.
+                  </div>
+                  <br>
                 </div>
               </div>
             </div>
@@ -446,7 +460,7 @@
 
                 <div class="content has-text-centered">
                   <span style="font-size: 110%">
-                  Feel free to try out our <a target="_blank" href="https://github.com/sequential-dexterity/SeqDex#quick-demo">quick demo</a> (Interactive GUI)!
+                  Feel free to try out our <a target="_blank" href="https://github.com/sequential-dexterity/SeqDex#quick-demo">quick demo</a> (Interactive GUI)! To get the best performance for this demo, the policy takes the full state information (object acceleration, motor velocity, …) as inputs and is allowed to control the end-effector orientation, which is the policy before distillation for the real-world deployment.
                 </div>
 
               </div>
@@ -539,7 +553,9 @@
                 
                 <b>(2).</b> We use a color-based segmentation method to localize the target block in the wrist-view and use XMem to track the segment. <br>
 
-                <b>(3).</b> Based on the segmentation and RGB-D inputs, DenseFusion is used to estimate the 6D pose of the block in real-time.
+                <b>(3).</b> Based on the segmentation and RGB-D inputs, DenseFusion is used to estimate the 6D pose of the block in real-time. <br>
+              
+                <b>(4).</b> During real-world deployment, we also increase the exponential moving average[6] smoothing factor to avoid fingers' jittering motion.
               </div>
               <br>
           </div>
